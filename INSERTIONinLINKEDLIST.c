@@ -111,9 +111,9 @@ int main(){
     printf("\n");
     printf("YOUR LIST:");
     display(head);
-insertingAFTERposition(&head);
     insertingATbeginning(&head);//INSERTING AT THE BEGINNING
     insertingATend(&head);//INSERTING AT THE END
+    insertingAFTERposition(&head);
     
     return 0;
 }

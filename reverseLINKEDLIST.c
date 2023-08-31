@@ -28,6 +28,7 @@ void reverse(struct node**head){
     }
     *head=prevnode;
 
+    printf("REVERSED LIST-\n");
     display(*head);
 }
 

@@ -4,11 +4,9 @@
 struct node{
     int data;
     struct node*next;
-};
+}*head,*temp,*newnode;
 
-struct node*head,*temp,*newnode;
-
-void display(struct node*head){
+void display(){
     temp=head;
     while(temp!=0){
         printf("%d\n", temp->data);
@@ -16,7 +14,7 @@ void display(struct node*head){
     }
 }
 
-struct node* createlist(){
+void createlist(){
     head=0;
     int choice;
     while(choice){
@@ -38,50 +36,52 @@ struct node* createlist(){
     }
     printf("\n");
     printf("YOUR LIST-\n");
-    display(head);
-
-    return head;
+    display();   
 }
 
-void delfrombeg(struct node**head){
-    if(*head==0){
+void delfrombeg(){
+    if(head==0){
         printf("Empty list!\n");
     }
     else{
-        temp=*head;
-        *head=(*head)->next;
+        temp=head;
+        head=(head)->next;
         free(temp);
     }
     printf("List after deleting  from beginning-\n");
-    display(*head);
+    display(head);
 
 }
 
-void delfromend(struct node**head){
+void delfromend(){
     struct node*prevnode;
-    temp=*head;
+    temp=head;
     while(temp->next!=0){
         prevnode=temp;
         temp=temp->next;
     }
-    if(temp==*head){
-        *head=0;
+    if(temp==head){
+        head=0;
     }
     else{
         prevnode->next=0;
     }
     free(temp);
     printf("list after deleting from end-\n");
-    display(*head);
+    display();
 
 }
 
-void delfrompos(struct node**head){
+void delfrompos(){
     struct node*nextnode;
     int pos,i=1;
-    temp=*head;
+    temp=head;
     printf("From which position do you want to delete?\n");
     scanf("%d", &pos);
+
+    if(head==0){
+        printf("Empty List!");
+    }
     while(i<pos-1){
         temp=temp->next;
         i++;
@@ -91,17 +91,17 @@ void delfrompos(struct node**head){
     free(nextnode);
     printf("\n");
     printf("List after deleting-\n");
-    display(*head);
+    display(head);
 }
 
 int main(){
-    head=createlist();
+    createlist();
     printf("\n");
-    delfrombeg(&head);
+    delfrombeg();
     printf("\n");
-    delfromend(&head);
+    delfromend();
     printf("\n");
-    delfrompos(&head);
+    delfrompos();
 
     
     return 0;

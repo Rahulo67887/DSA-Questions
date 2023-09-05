@@ -4,10 +4,9 @@
 struct node{
         int data;
         struct node*next;
-    };
-struct node*head, *newnode, *temp;
+    }*head, *newnode, *temp;
 
-void display(struct node *head){
+void display(){
     printf("\n");
     temp=head;
     while(temp!=0){
@@ -16,29 +15,29 @@ void display(struct node *head){
     }
 }
 
-void insertingATbeginning(struct node**head){
+void insertingATbeginning(){
     printf("\n");
 
     newnode=(struct node*)malloc(sizeof(struct node));
     printf("What do you want to insert at the beginning?\n");
     scanf("%d", &newnode->data);
-    newnode->next=*head;
-    *head=newnode;
+    newnode->next=head;
+    head=newnode;
 
     printf("\n");
     printf("LIST AFTER INSERTING AT THE BEGINNING-");
-    display(*head);
+    display();
 }
 
-void insertingATend(struct node**head){
+void insertingATend(){
     printf("\n");
 
-    struct node *newnode=(struct node*)malloc(sizeof(struct node));
+    newnode=(struct node*)malloc(sizeof(struct node));
     printf("What do you want to insert at the end?\n");
     scanf("%d", &newnode->data);
     newnode->next=0;
 
-    temp=*head;
+    temp=head;
     while(temp->next!=0){
         temp=temp->next;
     }
@@ -46,28 +45,33 @@ void insertingATend(struct node**head){
 
     printf("\n");
     printf("LIST AFTER INSERTING AT THE END-");
-    display(*head);
+    display();
 }
 
-int insertingAFTERposition(struct node **head){
-    int pos,i=1,count=0;
+ void insertingAFTERposition(){
+    int pos,i=1,length=0;
 
-    temp=*head;
+    temp=head;
     while(temp!=0){
         temp=temp->next;
-        count++;
+        length++;
     }
 
     printf("\n");
     printf("After which position do you want to insert data?\n");
     scanf("%d", &pos);
-    if(pos>count){
+    if(pos>length+1){
         printf("INVALID POSITION!");
-        return 0;
+    }
+    else if(pos==1){
+        insertingATbeginning();
+    }
+    else if(pos==length+1){
+        insertingATend();
     }
     else{
         newnode=(struct node*)malloc(sizeof(struct node));
-        temp=*head;
+        temp=head;
         while(i<pos){
             temp=temp->next;
             i++;
@@ -76,13 +80,11 @@ int insertingAFTERposition(struct node **head){
         scanf("%d", &newnode->data);
         newnode->next=temp->next;
         temp->next=newnode;
+        printf("\n");
+        printf("List AFTER INSERTING DATA-");
+        display();
     }
-
-    printf("\n");
-    printf("List AFTER INSERTING DATA-");
-    display(*head);
-    return 0;
-}
+    }
 
 int main(){
     head=0;
@@ -110,11 +112,11 @@ int main(){
 
     printf("\n");
     printf("YOUR LIST:");
-    display(head);
+    display();
     printf("\n");
-    insertingATbeginning(&head);//INSERTING AT THE BEGINNING
-    insertingATend(&head);//INSERTING AT THE END
-    insertingAFTERposition(&head);
+    insertingATbeginning();//INSERTING AT THE BEGINNING
+    insertingATend();//INSERTING AT THE END
+    insertingAFTERposition();
     
     return 0;
 }

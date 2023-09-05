@@ -4,11 +4,9 @@
 struct node{
     int data;
     struct node *next;
-};
+}*head, *temp, *newnode;
 
-struct node*head, *temp, *newnode;
-
-void display(struct node *head){
+void display(){
     temp=head;
     while(temp!=0){
         printf("%d\n", temp->data);
@@ -16,23 +14,23 @@ void display(struct node *head){
     }
 }
 
-void reverse(struct node**head){
+void reverse(){
     struct node*prevnode, *nextnode, *currentnode;
     prevnode=0;
-    nextnode=currentnode=*head;
+    nextnode=currentnode=head;
     while(nextnode!=0){
         nextnode=nextnode->next;
         currentnode->next=prevnode;
         prevnode=currentnode;
         currentnode=nextnode;
     }
-    *head=prevnode;
+    head=prevnode;
 
     printf("REVERSED LIST-\n");
-    display(*head);
+    display();
 }
 
-struct node *createlist(){
+void createlist(){
     head=0;
     int choice;
     while(choice){
@@ -54,14 +52,13 @@ struct node *createlist(){
     }
 
     printf("\n");
-    display(head);
-    return(head);
+    display();
 }
 
 
 int main(){
-    head=createlist();
+    createlist();
     printf("\n");
-    reverse(&head);
+    reverse();
     return 0;
 }

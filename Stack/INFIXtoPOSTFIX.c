@@ -15,10 +15,7 @@ int Isoperator(char ch){
 }
 
 int precedence(char ch){
-    if(ch=='{' || ch=='}' || ch=='[' || ch==']' || ch=='(' || ch==')'){
-        return 4;
-    }
-    else if(ch=='^'){
+    if(ch=='^'){
         return 3;
     }
     else if(ch=='*' || ch=='/'){
@@ -84,7 +81,7 @@ char *infTOpo(char *infix){
                 push(infix[i]);
                 i++;
             }
-            else if(precedence(infix[i]<precedence(stacktop()))){
+            else if(precedence(infix[i])<precedence(stacktop())){
                 postfix[j]=pop();
                 j++;
             }
@@ -113,9 +110,7 @@ char *infTOpo(char *infix){
 
 int main(){
     printf("hsdj");
-    char *infix="a*b/t/j+p";
-    char *post=infTOpo(infix);
-    printf("Postfix is ");
-    puts(post);
+    char *infix="a-b+(m^n)*(o+P)-q/r^s*t+z";
+    printf("Postfix is %s", infTOpo(infix));
     return 0;
 }

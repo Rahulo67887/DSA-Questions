@@ -9,7 +9,7 @@ struct node{
 struct node* create(){
     int x;
     struct node *newnode= (struct node*)malloc(sizeof(struct node));
-    printf("Enter data(-1 for no node:)");
+    printf("Enter data(-1 for no node):");
     scanf("%d", &x);
     if(x==-1){
         return 0;
@@ -67,5 +67,6 @@ int main(){
     printf("\n");
     inorder(root);
     printf("\n");
+
     return 0;
 }

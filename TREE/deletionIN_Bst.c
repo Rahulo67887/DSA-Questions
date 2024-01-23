@@ -106,6 +106,15 @@ int main(){
     inorder(p);
     printf("\n");
    
+   switch (expression)
+   {
+   case /* constant-expression */:
+    /* code */
+    break;
+   
+   default:
+    break;
+   }
 
     return 0;
 }

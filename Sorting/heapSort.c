@@ -3,12 +3,12 @@
 
 void maxHeapify(int a[], int n, int i){
     int largest=i;
-    int l=(2*i);
-    int r=(2*i)+1;
-    while(l<=n && a[l]>a[largest]){
+    int l=(2*i)+1;
+    int r=(2*i)+2;
+    while(l<n && a[l]>a[largest]){
         largest=l;
     }
-    while(r<=n && a[r]>a[largest]){
+    while(r<n && a[r]>a[largest]){
         largest=r;
     }
     if(largest!=i){
@@ -20,14 +20,14 @@ void maxHeapify(int a[], int n, int i){
 }
 
 void heapSort(int a[], int n){
-    for(int i=n/2; i>=1; i--){
+    for(int i=n/2-1; i>=0; i--){
         maxHeapify(a, n, i);
     }
-    for(int i=n; i>=1; i--){
+    for(int i=n-1; i>=0; i--){
         int temp=a[i];
-        a[i]=a[1];
-        a[1]=temp;
-        maxHeapify(a, n, 1);
+        a[i]=a[0];
+        a[0]=temp;
+        maxHeapify(a, i, 0);
     }
 }
 

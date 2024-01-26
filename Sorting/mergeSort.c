@@ -30,6 +30,9 @@ void merge(int a[], int lb, int mid, int ub){
             k++;
         }
     }
+    for(k=lb; k<=ub;  k++){
+        a[k]=b[k];
+    }
 }
 
 void mergeSort(int a[], int lb, int ub){
@@ -55,7 +58,7 @@ int main(){
     mergeSort(arr, lb, ub);
     printf("Array is Sorted!\n Sorted Array-\n");
     for(int i=0; i<n; i++){
-        printf("%d\t", b[i]);
+        printf("%d\t", arr[i]);
     }
 
     return 0;

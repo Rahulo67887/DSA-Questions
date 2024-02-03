@@ -1,29 +1,32 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-void countSort(int a[], int n){
-    int key=a[0];
-    for(int i=0; i<n; i++){
-        if(a[i]>key){
-            key=a[i];
-        }
-    }
-    int count[key+1];
+void countSort(int a[], int n, int pos){
+    int count[10]={0};
     int b[n];
-    for(int i=0; i<=key; i++){
-        count[i]=0;
-    }
     for(int i=0; i<n; i++){
-        count[a[i]]++;
+        count[(a[i]/pos)%10]++;
     }
-    for(int i=1; i<=key; i++){
+    for(int i=1; i<10; i++){
         count[i]=count[i-1]+count[i];
     }
     for(int i=n-1; i>=0; i--){
-        b[--count[a[i]]]=a[i];
+        b[--count[(a[i]/pos)%10]]=a[i];
     }
     for(int i=0; i<n; i++){
         a[i]=b[i];
+    }
+}
+
+void radixSort(int a[], int n){
+    int max=a[0];
+    for(int i=0; i<n; i++){
+        if(a[i]>max){
+            max=a[i];
+        }
+    }
+    for(int pos=1;max/pos>0; pos*=10){
+        countSort(a, n, pos);
     }
 }
 
@@ -37,7 +40,7 @@ int main(){
         scanf("%d", &arr[i]);
     }
 
-    countSort(arr,4);
+    radixSort(arr, n);
 
     printf("Array is Sorted!\n Sorted Array-\n");
     for(int i=0; i<n; i++){
@@ -45,6 +48,6 @@ int main(){
     }
 
     free(arr);
-    
+
     return 0;
 }
